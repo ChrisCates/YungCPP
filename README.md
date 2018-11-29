@@ -1,5 +1,8 @@
 # Yung C++
 
+[![Build Status](https://travis-ci.org/ChrisCates/YungCPP.svg?branch=master)](https://travis-ci.org/ChrisCates/YungCPP)
+[![Coverage Status](https://coveralls.io/repos/github/ChrisCates/YungCPP/badge.svg?branch=master)](https://coveralls.io/github/ChrisCates/YungCPP?branch=master)
+
 A framework for structuring Web Services in C++. Designed to work with the MySQL, Mongo and Redis C++ drivers. The intention is to build a scalable, easy to use HTTP(S) Web Server and Client for REST APIs and Websockets. The focus will be primarily to support UNIX OSes.
 
 ## Command Line Interface
@@ -10,25 +13,25 @@ A command line interface to bootstrap projects and generate routes and services 
 
 ### Required for build
 
-1. REST/API Requests are done via: https://github.com/Microsoft/cpprestsdk
+1. [C++ REST SDK](https://github.com/Microsoft/cpprestsdk).
 
-2. Boost Libraries
+2. [Boost Core](https://github.com/boostorg/boost/wiki/Getting-Started).
 
-3. OpenSSL
+3. [OpenSSL](https://github.com/openssl/openssl).
 
-4. CMake and Make, typically on most unix systems, but, if needed can be installed via an `apt-get`.
+4. CMake LTS, Make LTS
 
 ### Optional requirements
 
-5. MongoDB, which can be installed via a PPA or Homebrew for the Daemon (`mongod`).
-  - For the Mongo C++ drivers. You will need to check out: http://mongocxx.org/mongocxx-v3/installation/
-  - You will need to install Mongo C version first: https://github.com/mongodb/mongo-c-driver/releases
+5. [MongoDB](https://github.com/mongodb/mongo)
+  - Before install C++ drivers, you need to install [the C drivers first](https://github.com/mongodb/mongo-c-driver/releases).
+  - Once C drivers installed you can install [the C++ drivers](http://mongocxx.org/mongocxx-v3/installation/).
 
-6. Redis, which can be installed via a PPA or Homebrew.
-  - For the Redis C drivers. You will need to check out: https://github.com/redis/hiredis.
+6. [Redis](https://github.com/antirez/redis/)
+  - The C drivers are interacted with directly without C++ using [hiredis](https://github.com/redis/hiredis).
 
-7. MySQL, which can be installed via a PPA or Homebrew.
-  - For the MySQL C++ Drivers. Check out:
+7. [MySQL](https://github.com/mysql/mysql-server)
+  - The [mysql-connect-cpp drivers](https://github.com/mysql/mysql-connector-cpp) are used to interact with MySQL.
 
 ## Building with CMake
 
@@ -76,6 +79,7 @@ Yung C++ | A framework for modern web services:
   --help                print help message
   -h [ --host ] arg     specify host to listen on (default is http://0.0.0.0)
   -p [ --port ] arg     specify port to listen on (default is 3000)
+  -c [ --cors ] arg     specify CORS (default is * which is sometimes unsafe)
 ```
 
 This way you can change the default host and port if necessary.
