@@ -18,7 +18,7 @@ yungcpp new project Hello
 yungcpp new route Hello
 ```
 
-**This will create**:
+**This will create `./routes/Hello.hpp`**:
 
 ```c++
 #include "../Shared.hpp"
@@ -49,7 +49,7 @@ namespace yungroute {
 yungcpp new service Hello
 ```
 
-**This will create**:
+**This will create `./services/Hello.hpp`**:
 
 ```c++
 #include "../Shared.hpp"
