@@ -3,11 +3,12 @@
 #ifndef _SERVERDATA_H
 #define _SERVERDATA_H 1
 
-web::json::value AppendServerData(web::json::value info) {
-    info[U("version")] = web::json::value::string(U("0.0.1"));
-    info[U("server")] = web::json::value::string(U("YungCPP"));
-
-    return info;
+namespace yungservice {
+    web::json::value metadata(web::json::value info) {
+        info["version"] = web::json::value::string("0.0.1");
+        info["server"] = web::json::value::string("YungCPP");
+        return info;
+    }
 }
 
 #endif

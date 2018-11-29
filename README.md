@@ -1,4 +1,4 @@
-# Yung CPP
+# Yung C++
 
 A framework for structuring Web Services in C++. Designed to work with the MySQL, Mongo and Redis C++ drivers. The intention is to build a scalable, easy to use HTTP(S) Web Server and Client for REST APIs and Websockets. The focus will be primarily to support UNIX OSes.
 
@@ -6,31 +6,7 @@ A framework for structuring Web Services in C++. Designed to work with the MySQL
 
 A command line interface to generate routes and services will be available soon via npmjs. The CLI tool will be able to generate services, routes and models for respective data types.
 
-Example usage will be something like:
-
-**Generate new YungCPP project in `/hello`**:
-
-```bash
-yungcpp new project Hello
-```
-
-**Generate new route in `src/route/Hello.hpp`**:
-
-```bash
-yungcpp new route Hello
-```
-
-**Generate new service in `src/service/Hello.hpp`**:
-
-```bash
-yungcpp new service Hello
-```
-
-**Generate new model in `src/model/Hello.hpp`**:
-
-```bash
-yungcpp new model Hello
-```
+You can learn about the proposed spec [here](README_CLI.md).
 
 ## Requirements
 
@@ -82,15 +58,29 @@ make
 ./server
 ```
 
-### Custom Build with DB Drivers
+**4. (Optional) Add flags for drivers**
 
-You can easily update the CMakeLists.txt with the CMake files in the `/cmake` folder by adding an additional `INCLUDE` function in your CMakeLists.txt file.
+Run CMake with the following optional flags:
 
-**Example Include:**
-
+```bash
+cmake -DMONGOCXX=ON # To enable MongoDB
+cmake -DREDISCXX=ON # To enable Hiredis
+cmake -DMYSQLCXX=ON # To enable MySQL
 ```
-INCLUDE(${CMAKE_CURRENT_SOURCE_DIR}/cmake/CMakeLists.mongo.txt)
+
+### Custom flags
+
+The binary also comes with custom command line options:
+
+```bash
+$ server --help
+Yung C++ | A framework for modern web services:
+  --help                print help message
+  -h [ --host ] arg     specify host to listen on (default is http://0.0.0.0)
+  -p [ --port ] arg     specify port to listen on (default is 3000)
 ```
+
+This way you can change the default host and port if necessary.
 
 ## Additional Resources
 
@@ -98,4 +88,4 @@ INCLUDE(${CMAKE_CURRENT_SOURCE_DIR}/cmake/CMakeLists.mongo.txt)
 
 - There will also be a tutorial on usage on webpage https://chriscates.ca/a/yungcpp.
 
-- If you are interested in contributing or want to get in contact. Email me at hello@chriscates.ca
+- If you are interested in contributing or want to get in contact. Email me at :mailbox: hello@chriscates.ca

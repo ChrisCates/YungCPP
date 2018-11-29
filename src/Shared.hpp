@@ -2,6 +2,8 @@
 #define _SHARED_H 1
 
 // API Dependencies
+#include "boost/program_options.hpp"
+
 #include <cpprest/http_listener.h>
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>

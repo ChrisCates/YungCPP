@@ -4,18 +4,34 @@
 #ifndef _ROUTER_H
 #define _ROUTER_H 1
 
-void Router(web::http::http_request request) {
-    web::uri requestUri = request.request_uri();
+namespace yungrouter {
 
-    std::cout << "[" + request.method() + "] Request to " << requestUri.path() << std::endl;
+    web::http::http_response generateResponse(web::http::status_code code, std::string payload) {
+        web::http::http_response response (code);
 
-    if (requestUri.path() == "/") {
-        std::pair<web::http::status_code, std::string> response = ServerInfo();
-        request.reply(response.first, response.second, "application/json");
-    } else {
-        std::pair<web::http::status_code, std::string> response = ServerInfo();
-        request.reply(response.first, response.second, "application/json");
+        response.headers().add(U("Access-Control-Allow-Origin"), U("*"));
+        response.set_body(payload, "application/json");
+
+        return response;
     }
+
+    void handler(web::http::http_request request) {
+        web::uri requestUri = request.request_uri();
+        std::string path = requestUri.path();
+        std::string method = request.method();
+
+        std::cout << "[" + request.method() + "] Request to " << path << std::endl;
+
+        std::pair<web::http::status_code, std::string> response;
+        response = yungroute::notFound();
+
+        if (method == "GET") {
+            if (path == "/") { response = yungroute::info(); }
+        }
+
+        request.reply(generateResponse(response.first, response.second));
+    }
+
 }
 
 #endif
