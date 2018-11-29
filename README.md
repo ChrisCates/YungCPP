@@ -4,9 +4,7 @@ A framework for structuring Web Services in C++. Designed to work with the MySQL
 
 ## Command Line Interface
 
-A command line interface to generate routes and services will be available soon via npmjs. The CLI tool will be able to generate services, routes and models for respective data types.
-
-You can learn about the proposed spec [here](README_CLI.md).
+A command line interface to bootstrap projects and generate routes and services is available via npmjs and yarn. You can learn about the command line tool [here](https://github.com/ChrisCates/YungCLI).
 
 ## Requirements
 
