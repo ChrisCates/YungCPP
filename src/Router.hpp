@@ -1,4 +1,5 @@
 #include "./Shared.hpp"
+#include "./Config.hpp"
 #include "./routes/ServerInfo.hpp"
 
 #ifndef _ROUTER_H
@@ -9,7 +10,7 @@ namespace yungrouter {
     web::http::http_response generateResponse(web::http::status_code code, std::string payload) {
         web::http::http_response response (code);
 
-        response.headers().add(U("Access-Control-Allow-Origin"), U("*"));
+        response.headers().add(U("Access-Control-Allow-Origin"), U(yungconfig::cors));
         response.set_body(payload, "application/json");
 
         return response;

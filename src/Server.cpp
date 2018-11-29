@@ -1,18 +1,17 @@
 #include "./Shared.hpp"
+#include "./Config.hpp"
 #include "./Router.hpp"
 
 int main(int argc, char** argv) {
-    std::string configHost = "http://0.0.0.0";
-    std::string configPort = "3000";
-
     namespace yungopt = boost::program_options;
     yungopt::options_description yungdescription("Yung C++ | A framework for modern web services");
 
     yungdescription
     .add_options()
     ("help", "print help message")
-    ("host,h", yungopt::value<std::string>(&configHost), "specify host to listen on (default is http://0.0.0.0)")
-    ("port,p", yungopt::value<std::string>(&configPort), "specify port to listen on (default is 3000)");
+    ("host,h", yungopt::value<std::string>(&yungconfig::host), "specify host to listen on (default is http://0.0.0.0)")
+    ("port,p", yungopt::value<std::string>(&yungconfig::port), "specify port to listen on (default is 3000)")
+    ("cors,c", yungopt::value<std::string>(&yungconfig::cors), "specify CORS (default is * which is sometimes unsafe)");
 
     yungopt::variables_map vm;
 
@@ -24,15 +23,11 @@ int main(int argc, char** argv) {
             return 0;
         }
 
-        if (vm.count("host")) {
-            configHost = vm["host"].as<std::string>();
-        }
+        if (vm.count("host")) yungconfig::host = vm["host"].as<std::string>();
+        if (vm.count("port")) yungconfig::port = vm["port"].as<std::string>();
+        if (vm.count("cors")) yungconfig::cors = vm["cors"].as<std::string>();
 
-        if (vm.count("port")) {
-            configPort = vm["port"].as<std::string>();
-        }
-
-        std::string host = configHost + ":" + configPort;
+        std::string host = yungconfig::host + ":" + yungconfig::port;
         web::http::experimental::listener::http_listener listener(host);
 
         listener.support(web::http::methods::GET, yungrouter::handler);
