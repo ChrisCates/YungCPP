@@ -1,7 +1,11 @@
 # Yung C++
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 [![Build Status](https://travis-ci.org/ChrisCates/YungCPP.svg?branch=master)](https://travis-ci.org/ChrisCates/YungCPP)
 [![Coverage Status](https://coveralls.io/repos/github/ChrisCates/YungCPP/badge.svg?branch=master)](https://coveralls.io/github/ChrisCates/YungCPP?branch=master)
+![C++ Standard](https://img.shields.io/badge/cmake%20standard-C++%2011-brightgreen.svg)
+![CMake](https://img.shields.io/badge/cmake%20version-3.7-green.svg)
+
 
 A framework for structuring Web Services in C++. Designed to work with the MySQL, Mongo and Redis C++ drivers. The intention is to build a scalable, easy to use HTTP(S) Web Server and Client for REST APIs and Websockets. The focus will be primarily to support UNIX OSes.
 
