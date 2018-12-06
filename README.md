@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 [![Build Status](https://travis-ci.org/ChrisCates/YungCPP.svg?branch=master)](https://travis-ci.org/ChrisCates/YungCPP)
-[![Coverage Status](https://coveralls.io/repos/github/ChrisCates/YungCPP/badge.svg?branch=master)](https://coveralls.io/github/ChrisCates/YungCPP?branch=master)
+[![codecov](https://codecov.io/gh/ChrisCates/YungCPP/branch/master/graph/badge.svg)](https://codecov.io/gh/ChrisCates/YungCPP)
 ![C++ Standard](https://img.shields.io/badge/cmake%20standard-C++%2011-brightgreen.svg)
 ![CMake](https://img.shields.io/badge/cmake%20version-3.7-green.svg)
 
