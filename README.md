@@ -28,7 +28,7 @@ A command line interface to bootstrap projects and generate routes and services 
 ### Optional requirements
 
 5. [MongoDB](https://github.com/mongodb/mongo)
-  - Before install C++ drivers, you need to install [the C drivers first](https://github.com/mongodb/mongo-c-driver/releases).
+	- Before install C++ drivers, you need to install [the C drivers first](https://github.com/mongodb/mongo-c-driver/releases).
   - Once C drivers installed you can install [the C++ drivers](http://mongocxx.org/mongocxx-v3/installation/).
 
 6. [Redis](https://github.com/antirez/redis/)
@@ -84,6 +84,8 @@ Yung C++ | A framework for modern web services:
   -h [ --host ] arg     specify host to listen on (default is http://0.0.0.0)
   -p [ --port ] arg     specify port to listen on (default is 3000)
   -c [ --cors ] arg     specify CORS (default is * which is sometimes unsafe)
+  --mongo arg           MongoDB url (default is mongodb://localhost:27017)
+  --mongodb arg         MongoDB DB name (default is yungcpp)
 ```
 
 This way you can change the default host and port if necessary.

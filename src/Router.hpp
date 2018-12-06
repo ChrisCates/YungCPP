@@ -1,6 +1,7 @@
 #include "./Shared.hpp"
 #include "./Config.hpp"
 #include "./routes/ServerInfo.hpp"
+#include "./routes/Examples.hpp"
 
 #ifndef _ROUTER_H
 #define _ROUTER_H 1
@@ -28,6 +29,7 @@ namespace yungrouter {
 
         if (method == "GET") {
             if (path == "/") { response = yungroute::info(); }
+            if (path == "/mongo/insert/one") { response = yungroute::mongoInsert(); }
         }
 
         request.reply(generateResponse(response.first, response.second));

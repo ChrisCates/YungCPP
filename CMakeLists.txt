@@ -32,8 +32,13 @@ OPTION(MYSQLCXX "Enable Mongo C++ Drivers" OFF)
 
 # Optional MongoCXX build files
 IF (MONGOCXX)
-  MESSAGE("-- MongoDB Enabled \t\t")
   INCLUDE("${CMAKE_CURRENT_LIST_DIR}/cmake/Mongo.cmake")
+  MESSAGE("-- MongoDB now Enabled, MONGOCXX definition added\t\t")
+  SET(
+    REQUIRED_DEFINITIONS
+    ${REQUIRED_DEFINITONS}
+    MONGOCXX
+  )
 ENDIF (MONGOCXX)
 
 # Optional RedisCXX build files
