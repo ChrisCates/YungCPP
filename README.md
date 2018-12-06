@@ -28,14 +28,18 @@ A command line interface to bootstrap projects and generate routes and services 
 ### Optional requirements
 
 5. [MongoDB](https://github.com/mongodb/mongo)
+	
 	- Before install C++ drivers, you need to install [the C drivers first](https://github.com/mongodb/mongo-c-driver/releases).
-  - Once C drivers installed you can install [the C++ drivers](http://mongocxx.org/mongocxx-v3/installation/).
+  	
+  	- Once C drivers installed you can install [the C++ drivers](http://mongocxx.org/mongocxx-v3/installation/).
 
 6. [Redis](https://github.com/antirez/redis/)
-  - The C drivers are interacted with directly without C++ using [hiredis](https://github.com/redis/hiredis).
+	
+	- The C drivers are interacted with directly without C++ using [hiredis](https://github.com/redis/hiredis).
 
 7. [MySQL](https://github.com/mysql/mysql-server)
-  - The [mysql-connect-cpp drivers](https://github.com/mysql/mysql-connector-cpp) are used to interact with MySQL.
+
+	- The [mysql-connect-cpp drivers](https://github.com/mysql/mysql-connector-cpp) are used to interact with MySQL.
 
 ## Building with CMake
 

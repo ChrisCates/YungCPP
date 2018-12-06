@@ -1,5 +1,4 @@
 #include "../Shared.hpp"
-#include "../odbc/Mongo.hpp"
 
 #ifndef _MONGOSAMPLE_H
 #define _MONGOSAMPLE_H 1
@@ -9,8 +8,15 @@ namespace yungservice {
         web::json::value sampleData;
         sampleData["hello"] = web::json::value::string("world");
 
-        auto task = yungmongo::insertOne("test", sampleData);
-        bool success = task.get();
+        bool success = false;
+
+        if (USEMONGO) {
+            auto task = yungmongo::insertOne("test", sampleData);
+            success = task.get();
+        } else {
+            result["message"] = web::json::value::string("MongoDB Drivers are not enabled");
+        }
+
 
         result["insertedData"] = sampleData;
         result["success"] = web::json::value(success);
