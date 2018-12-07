@@ -30,6 +30,11 @@ namespace yungrouter {
         if (method == "GET") {
             if (path == "/") { response = yungroute::info(); }
             if (path == "/mongo/insert/one") { response = yungroute::mongoInsert(); }
+            if (path == "/mongo/insert/many") { response = yungroute::mongoInsertMany(); }
+            if (path == "/mongo/update/one") { response = yungroute::mongoUpdate(); }
+            if (path == "/mongo/update/many") { response = yungroute::mongoUpdateMany(); }
+            if (path == "/mongo/find/one") { response = yungroute::mongoFindOne(); }
+            if (path == "/mongo/find/all") { response = yungroute::mongoFindAll(); }
         }
 
         request.reply(generateResponse(response.first, response.second));
