@@ -1,8 +1,9 @@
-#include <string>
-#include <boost/test/unit_test.hpp>
-#include "Config.hpp"
+#define BOOST_TEST_MODULE "Config.hpp tests"
 
-#define BOOST_TEST_MODULE ConfigTest
+#include <boost/test/unit_test.hpp>
+#include <string>
+
+#include "Config.hpp"
 
 BOOST_AUTO_TEST_SUITE(Config)
 

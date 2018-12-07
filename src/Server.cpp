@@ -1,6 +1,6 @@
-#include "./Shared.hpp"
-#include "./Config.hpp"
-#include "./Router.hpp"
+#include "Shared.hpp"
+#include "Config.hpp"
+#include "Router.hpp"
 
 int main(int argc, char** argv) {
     namespace yungopt = boost::program_options;

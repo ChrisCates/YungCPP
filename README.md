@@ -41,6 +41,10 @@ A command line interface to bootstrap projects and generate routes and services 
 
 	- The [mysql-connect-cpp drivers](https://github.com/mysql/mysql-connector-cpp) are used to interact with MySQL.
 
+8. [Websocket++](https://github.com/zaphoyd/websocketpp)
+
+	- *Note: Websocket is only required to create WS(S) servers and is not required to create websocket clients.*
+
 ## Building with CMake
 
 CMake will always be the best way to interface with the YungCPP framework. Support will always be up to date for Mac OS and Debian systems. I am open to contributions to support Windows.

@@ -1,7 +1,7 @@
-#include "./Shared.hpp"
-#include "./Config.hpp"
-#include "./routes/ServerInfo.hpp"
-#include "./routes/Examples.hpp"
+#include "Shared.hpp"
+#include "Config.hpp"
+#include "routes/ServerInfo.hpp"
+#include "routes/Examples.hpp"
 
 #ifndef _ROUTER_H
 #define _ROUTER_H 1

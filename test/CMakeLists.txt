@@ -40,7 +40,6 @@ LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../src)
 
 ADD_EXECUTABLE(
     ConfigTest
-    test.cpp
     Config.test.cpp
 )
 
@@ -49,12 +48,19 @@ TARGET_COMPILE_DEFINITIONS(ConfigTest PRIVATE BOOST_TEST_DYN_LINK)
 
 ADD_EXECUTABLE(
     ServerDataTest
-    test.cpp
     ServerData.test.cpp
 )
 
 TARGET_LINK_LIBRARIES(ServerDataTest ${REQUIRED_LIBRARIES})
 TARGET_COMPILE_DEFINITIONS(ServerDataTest PRIVATE BOOST_TEST_DYN_LINK)
+
+ADD_EXECUTABLE(
+    MongoShellTest
+    Mongo.shell.test.cpp
+)
+
+TARGET_LINK_LIBRARIES(MongoShellTest ${REQUIRED_LIBRARIES})
+TARGET_COMPILE_DEFINITIONS(MongoShellTest PRIVATE BOOST_TEST_DYN_LINK)
 
 ADD_TEST(
     TestConfig
@@ -64,4 +70,9 @@ ADD_TEST(
 ADD_TEST(
     TestServerData
     ServerDataTest
+)
+
+ADD_TEST(
+    TestMongoShell
+    MongoShellTest
 )

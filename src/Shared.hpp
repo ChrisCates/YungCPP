@@ -12,9 +12,6 @@
 #include <set>
 #include <string>
 
-// Server Depencencies
-#include "./services/ServerData.hpp"
-
 // MongoDB Drivers
 #ifdef MONGOCXX
     #define USEMONGO 1
@@ -29,10 +26,12 @@
     #include <mongocxx/instance.hpp>
     #include <mongocxx/options/find.hpp>
     #include <mongocxx/uri.hpp>
+
+    #include "odbc/Mongo.hpp"
 #else
     #define USEMONGO 0
-#endif
 
-#include "odbc/Mongo.hpp"
+    #include "odbc/Mongo.shell.hpp"
+#endif
 
 #endif

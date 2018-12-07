@@ -1,4 +1,5 @@
 #include "../Shared.hpp"
+#include "../services/ServerData.hpp"
 
 #ifndef _SERVERINFO_H
 #define _SERVERINFO_H 1
