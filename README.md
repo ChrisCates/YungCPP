@@ -28,13 +28,13 @@ A command line interface to bootstrap projects and generate routes and services 
 ### Optional requirements
 
 5. [MongoDB](https://github.com/mongodb/mongo)
-	
+
 	- Before install C++ drivers, you need to install [the C drivers first](https://github.com/mongodb/mongo-c-driver/releases).
-  	
+
   	- Once C drivers installed you can install [the C++ drivers](http://mongocxx.org/mongocxx-v3/installation/).
 
 6. [Redis](https://github.com/antirez/redis/)
-	
+
 	- The C drivers are interacted with directly without C++ using [hiredis](https://github.com/redis/hiredis).
 
 7. [MySQL](https://github.com/mysql/mysql-server)
@@ -58,10 +58,10 @@ mkdir build
 cd build
 ```
 
-**2. Make the cmake file with CMakeLists.txt. Please note that you will need to verbosely specify the directories for your OpenSSL libraries, as sometimes they are inconsistent on various OSes.**
+**2. Run cmake and make:**
 
 ```bash
-cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/lib ..
+cmake ..
 make
 ```
 
@@ -81,6 +81,16 @@ cmake -DREDISCXX=ON # To enable Hiredis
 cmake -DMYSQLCXX=ON # To enable MySQL
 ```
 
+**5. *NOTE:* sometimes you might need to specify library paths, if you do need to, you can do like so:**
+
+```bash
+# Custom OpenSSL paths
+cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/opt/openssl/lib ..
+
+# Custom MySQL path
+cmake -DMYSQLCXX_LIB_DIR=/usr/local/mysql-connector-c++ ..
+```
+
 ### Custom flags
 
 The binary also comes with custom command line options:
@@ -94,6 +104,9 @@ Yung C++ | A framework for modern web services:
   -c [ --cors ] arg     specify CORS (default is * which is sometimes unsafe)
   --mongo arg           MongoDB url (default is mongodb://localhost:27017)
   --mongodb arg         MongoDB DB name (default is yungcpp)
+  --mysql arg           MySQL url (default is mysqlx://root@127.0.0.1)
+  --mysqldb arg         MySQL DB name (default is yungcpp)
+  --redis arg           Redis url (default is redis://localhost:6379)
 ```
 
 This way you can change the default host and port if necessary.

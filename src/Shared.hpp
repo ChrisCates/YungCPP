@@ -14,7 +14,6 @@
 
 // MongoDB Drivers
 #ifdef MONGOCXX
-    #define USEMONGO 1
     #include <bsoncxx/builder/stream/document.hpp>
     #include <bsoncxx/builder/basic/array.hpp>
     #include <bsoncxx/builder/basic/document.hpp>
@@ -29,9 +28,24 @@
 
     #include "odbc/Mongo.hpp"
 #else
-    #define USEMONGO 0
-
+    #define MONGOCXX 0
     #include "odbc/Mongo.shell.hpp"
+#endif
+
+// MySQL Drivers
+#ifdef MYSQLCXX
+    #include "odbc/Mysql.hpp"
+#else
+    #define MYSQLCXX 0
+    #include "odbc/Mysql.shell.hpp"
+#endif
+
+// Redis Drivers
+#ifdef REDISCXX
+    #include "odbc/Redis.hpp"
+#else
+    #define REDISCXX 0
+    #include "odbc/Redis.shell.hpp"
 #endif
 
 #endif

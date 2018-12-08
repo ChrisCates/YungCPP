@@ -13,7 +13,10 @@ int main(int argc, char** argv) {
     ("port,p", yungopt::value<std::string>(&yungconfig::port), "specify port to listen on (default is 3000)")
     ("cors,c", yungopt::value<std::string>(&yungconfig::cors), "specify CORS (default is * which is sometimes unsafe)")
     ("mongo", yungopt::value<std::string>(&yungconfig::mongo), "MongoDB url (default is mongodb://localhost:27017)")
-    ("mongodb", yungopt::value<std::string>(&yungconfig::mongodb), "MongoDB DB name (default is yungcpp)");
+    ("mongodb", yungopt::value<std::string>(&yungconfig::mongodb), "MongoDB DB name (default is yungcpp)")
+    ("mysql", yungopt::value<std::string>(&yungconfig::mysql), "MySQL url (default is mysqlx://root@127.0.0.1)")
+    ("mysqldb", yungopt::value<std::string>(&yungconfig::mysqldb), "MySQL DB name (default is yungcpp)")
+    ("redis", yungopt::value<std::string>(&yungconfig::redis), "Redis url (default is redis://localhost:6379)");
 
     yungopt::variables_map vm;
 
@@ -30,6 +33,9 @@ int main(int argc, char** argv) {
         if (vm.count("cors")) yungconfig::cors = vm["cors"].as<std::string>();
         if (vm.count("mongo")) yungconfig::mongo = vm["mongo"].as<std::string>();
         if (vm.count("mongodb")) yungconfig::mongo = vm["mongodb"].as<std::string>();
+        if (vm.count("mysql")) yungconfig::mysql = vm["mysql"].as<std::string>();
+        if (vm.count("mysqldb")) yungconfig::mysqldb = vm["mysqldb"].as<std::string>();
+        if (vm.count("redis")) yungconfig::redis = vm["redis"].as<std::string>();
 
         std::string host = yungconfig::host + ":" + yungconfig::port;
         web::http::experimental::listener::http_listener listener(host);
@@ -42,7 +48,8 @@ int main(int argc, char** argv) {
 
         try {
             std::cout << "Server starting on host: " << host << std::endl;
-            if (USEMONGO) {
+
+            if (MONGOCXX) {
                 std::cout << "MongoDB Enabled on URI " << yungconfig::mongo << std::endl;
                 std::cout << "MongoDB is using Database " << yungconfig::mongodb << std::endl;
             }
