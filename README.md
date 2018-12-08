@@ -3,8 +3,8 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 [![Build Status](https://travis-ci.org/ChrisCates/YungCPP.svg?branch=master)](https://travis-ci.org/ChrisCates/YungCPP)
 [![codecov](https://codecov.io/gh/ChrisCates/YungCPP/branch/master/graph/badge.svg)](https://codecov.io/gh/ChrisCates/YungCPP)
-![C++ Standard](https://img.shields.io/badge/cmake%20standard-C++%2011-brightgreen.svg)
-![CMake](https://img.shields.io/badge/cmake%20version-3.7-green.svg)
+![C++ Standard](https://img.shields.io/badge/cmake%20standard-C++%2011-blue.svg)
+![CMake](https://img.shields.io/badge/cmake%20version-3.7-blue.svg)
 
 
 A framework for structuring Web Services in C++. Designed to work with the MySQL, Mongo and Redis C++ drivers. The intention is to build a scalable, easy to use HTTP(S) Web Server and Client for REST APIs and Websockets. The focus will be primarily to support UNIX OSes.
@@ -17,13 +17,13 @@ A command line interface to bootstrap projects and generate routes and services 
 
 ### Required for build
 
-1. [C++ REST SDK](https://github.com/Microsoft/cpprestsdk).
+1. [C++ REST SDK](https://github.com/Microsoft/cpprestsdk)
 
-2. [Boost Core](https://github.com/boostorg/boost/wiki/Getting-Started).
+2. [Boost Core](https://github.com/boostorg/boost/wiki/Getting-Started)
 
-3. [OpenSSL](https://github.com/openssl/openssl).
+3. [OpenSSL](https://github.com/openssl/openssl)
 
-4. CMake LTS, Make LTS
+4. [CMake and Make](https://cmake.org/) (>=3.7)
 
 ### Optional requirements
 
@@ -79,6 +79,7 @@ Run CMake with the following optional flags:
 cmake -DMONGOCXX=ON # To enable MongoDB
 cmake -DREDISCXX=ON # To enable Hiredis
 cmake -DMYSQLCXX=ON # To enable MySQL
+cmake -DWSSCXX=ON   # To enable Websocket++
 ```
 
 **5. *NOTE:* sometimes you might need to specify library paths, if you do need to, you can do like so:**
@@ -89,6 +90,12 @@ cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DOPENSSL_LIBRARIES=/usr/local/o
 
 # Custom MySQL path
 cmake -DMYSQLCXX_LIB_DIR=/usr/local/mysql-connector-c++ ..
+
+# Custom Redis path
+cmake -DHIREDIS_INCLUDE_DIR=/usr/local/include/hiredis ..
+
+# Custom Websocket++ path
+cmake -DWSSPP_INCLUDE_DIR=/usr/local/include/websocketpp ..
 ```
 
 ### Custom flags
@@ -104,7 +111,7 @@ Yung C++ | A framework for modern web services:
   -c [ --cors ] arg     specify CORS (default is * which is sometimes unsafe)
   --mongo arg           MongoDB url (default is mongodb://localhost:27017)
   --mongodb arg         MongoDB DB name (default is yungcpp)
-  --mysql arg           MySQL url (default is mysqlx://root@127.0.0.1)
+  --mysql arg           MySQL url (default is mysql://root@127.0.0.1:3306)
   --mysqldb arg         MySQL DB name (default is yungcpp)
   --redis arg           Redis url (default is redis://localhost:6379)
 ```

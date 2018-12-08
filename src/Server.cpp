@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
     ("cors,c", yungopt::value<std::string>(&yungconfig::cors), "specify CORS (default is * which is sometimes unsafe)")
     ("mongo", yungopt::value<std::string>(&yungconfig::mongo), "MongoDB url (default is mongodb://localhost:27017)")
     ("mongodb", yungopt::value<std::string>(&yungconfig::mongodb), "MongoDB DB name (default is yungcpp)")
-    ("mysql", yungopt::value<std::string>(&yungconfig::mysql), "MySQL url (default is mysqlx://root@127.0.0.1)")
+    ("mysql", yungopt::value<std::string>(&yungconfig::mysql), "MySQL url (default is mysql://root@127.0.0.1:3306)")
     ("mysqldb", yungopt::value<std::string>(&yungconfig::mysqldb), "MySQL DB name (default is yungcpp)")
     ("redis", yungopt::value<std::string>(&yungconfig::redis), "Redis url (default is redis://localhost:6379)");
 
@@ -52,6 +52,15 @@ int main(int argc, char** argv) {
             if (MONGOCXX) {
                 std::cout << "MongoDB Enabled on URI " << yungconfig::mongo << std::endl;
                 std::cout << "MongoDB is using Database " << yungconfig::mongodb << std::endl;
+            }
+
+            if (MYSQLCXX) {
+                std::cout << "MySQL Enabled on URI " << yungconfig::mysql << std::endl;
+                std::cout << "MySQL is using Database " << yungconfig::mysqldb << std::endl;
+            }
+
+            if (REDISCXX) {
+                std::cout << "Redis Enabled on URI " << yungconfig::redis << std::endl;
             }
 
             listener.open().wait();

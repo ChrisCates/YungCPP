@@ -1,5 +1,5 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.7) # 3.7 is LTS as of today
-SET(CMAKE_CXX_STANDARD 11) # Most syntax of the libraries require *atleast* C++11 syntax standards
+CMAKE_MINIMUM_REQUIRED(VERSION 3.7)
+SET(CMAKE_CXX_STANDARD 11)
 
 # These definitions make sure UNIX OSes don't throw errors on build
 if (UNIX)
@@ -46,39 +46,38 @@ SET(
 OPTION(MONGOCXX "Enable Mongo C++ Drivers" OFF)
 OPTION(REDISCXX "Enable Redis C++ Drivers" OFF)
 OPTION(MYSQLCXX "Enable Mongo C++ Drivers" OFF)
+OPTION(WSSCXX "Enable Websocket C++ Drivers" OFF)
 
 # Optional MongoCXX build files
 IF (MONGOCXX)
   INCLUDE("${CMAKE_CURRENT_LIST_DIR}/cmake/Mongo.cmake")
   MESSAGE("-- MongoDB now enabled, MONGOCXX definition added")
-  SET(
-    REQUIRED_DEFINITIONS
-    ${REQUIRED_DEFINITONS}
-    MONGOCXX
-  )
+  ADD_DEFINITIONS("-DMONGOCXX")
 ENDIF (MONGOCXX)
-
-# Optional RedisCXX build files
-IF (REDISCXX)
-INCLUDE("${CMAKE_CURRENT_LIST_DIR}/cmake/Redis.cmake")
-  MESSAGE("-- Redis now enabled, REDISCXX definition added")
-  SET(
-    REQUIRED_DEFINITIONS
-    ${REQUIRED_DEFINITONS}
-    REDISCXX
-  )
-ENDIF (REDISCXX)
 
 # Optional MySQLCXX build files
 IF (MYSQLCXX)
   INCLUDE("${CMAKE_CURRENT_LIST_DIR}/cmake/Mysql.cmake")
   MESSAGE("-- MySQL now enabled, MYSQLCXX definition added")
-  SET(
-    REQUIRED_DEFINITIONS
-    ${REQUIRED_DEFINITONS}
-    MYSQLCXX
-  )
+  ADD_DEFINITIONS("-DMYSQLCXX")
 ENDIF (MYSQLCXX)
+
+# Optional RedisCXX build files
+IF (REDISCXX)
+INCLUDE("${CMAKE_CURRENT_LIST_DIR}/cmake/Redis.cmake")
+  MESSAGE("-- Redis now enabled, REDISCXX definition added")
+  ADD_DEFINITIONS("-DREDISCXX")
+ENDIF (REDISCXX)
+
+# Optional WSSCXX build files
+IF (WSSCXX)
+  INCLUDE("${CMAKE_CURRENT_LIST_DIR}/cmake/Websocket.cmake")
+  MESSAGE("-- Websocket++ now enabled, WSSCXX definition added")
+  ADD_DEFINITIONS("-DWSSCXX")
+ENDIF (WSSCXX)
+
+MESSAGE("-- Definitions: " ${REQUIRED_DEFINITONS})
+
 
 # Create executable
 ADD_EXECUTABLE(server src/Server.cpp)

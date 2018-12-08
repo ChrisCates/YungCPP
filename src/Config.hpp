@@ -12,7 +12,7 @@ namespace yungconfig {
     std::string mongo = "mongodb://localhost:27017";
     std::string mongodb = "yungcpp";
 
-    std::string mysql = "mysqlx://root@127.0.0.1";
+    std::string mysql = "mysql://root@127.0.0.1:3306";
     std::string mysqldb = "yungcpp";
 
     std::string redis = "redis://localhost:6379";
