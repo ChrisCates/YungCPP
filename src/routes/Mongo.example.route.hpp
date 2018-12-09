@@ -1,5 +1,6 @@
 #include "../Shared.hpp"
-#include "../services/MongoSample.hpp"
+#include "../services/Server.service.hpp"
+#include "../services/Mongo.example.service.hpp"
 
 #ifndef _EXAMPLES_H
 #define _EXAMPLES_H 1

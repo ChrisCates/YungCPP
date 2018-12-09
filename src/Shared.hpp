@@ -6,10 +6,12 @@
 #include <cpprest/http_listener.h>
 #include <cpprest/http_client.h>
 #include <cpprest/json.h>
+#include <cpprest/ws_client.h>
 #include <iostream>
 #include <map>
 #include <set>
 #include <string>
+#include <chrono>
 
 // MongoDB Drivers
 #ifdef MONGOCXX
@@ -71,13 +73,9 @@
 
 // Websocket Drivers
 #ifdef WSSCXX
-    #include <hiredis.h>
-    #include <async.h>
-    #include <adapters/macosx.h>
-    #include "odbc/Redis.hpp"
+
 #else
     #define WSSCXX 0
-    #include "odbc/Redis.shell.hpp"
 #endif
 
 #endif

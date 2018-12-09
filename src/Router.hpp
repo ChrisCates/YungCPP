@@ -1,7 +1,7 @@
 #include "Shared.hpp"
 #include "Config.hpp"
-#include "routes/ServerInfo.hpp"
-#include "routes/Examples.hpp"
+#include "routes/Server.route.hpp"
+#include "routes/Mongo.example.route.hpp"
 
 #ifndef _ROUTER_H
 #define _ROUTER_H 1

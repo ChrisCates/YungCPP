@@ -3,7 +3,7 @@
 #ifndef _WEBSOCKET_H
 #define _WEBSOCKET_H 1
 
-namespace yungsocket {
+namespace yungutil {
 
     pplx::task<web::websockets::client::websocket_callback_client> listen(std::string socketUri) {
         return pplx::task<web::websockets::client::websocket_callback_client>([=] {
