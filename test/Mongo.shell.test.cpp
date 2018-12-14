@@ -67,9 +67,11 @@ BOOST_AUTO_TEST_CASE(MongoShellFindOne) {
     web::json::value options = web::json::value::parse("{}");
 
     auto task = yungmongo::findOne("test", filter, options);
-    std::string data = task.get();
+    web::json::value data = task.get();
 
-    BOOST_CHECK_EQUAL(data, "");
+    web::json::value compare = web::json::value::parse("{}");
+
+    BOOST_CHECK_EQUAL(data.is_object(), compare.is_object());
 }
 
 BOOST_AUTO_TEST_CASE(MongoShellFindAll) {
@@ -82,6 +84,28 @@ BOOST_AUTO_TEST_CASE(MongoShellFindAll) {
 
     BOOST_CHECK_EQUAL(data.is_array(), true);
     BOOST_CHECK_EQUAL(data.as_array().size(), 0);
+}
+
+BOOST_AUTO_TEST_CASE(MongoShellDeleteOne) {
+
+    web::json::value filter;
+    filter["data"] = web::json::value("hello world");
+
+    auto task = yungmongo::deleteOne("test", filter);
+    bool success = task.get();
+
+    BOOST_CHECK_EQUAL(success, false);
+}
+
+BOOST_AUTO_TEST_CASE(MongoShellDeleteMany) {
+
+    web::json::value filter;
+    filter["data"] = web::json::value("hello world");
+
+    auto task = yungmongo::deleteMany("test", filter);
+    bool success = task.get();
+
+    BOOST_CHECK_EQUAL(success, false);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

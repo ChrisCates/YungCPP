@@ -29,15 +29,27 @@ namespace yungmongo {
         });
     }
 
-    pplx::task<std::string> findOne(std::string collection, web::json::value filter, web::json::value optionsParams) {
-        return pplx::task<std::string>([=] {
-            return "";
+    pplx::task<web::json::value> findOne(std::string collection, web::json::value filter, web::json::value optionsParams) {
+        return pplx::task<web::json::value>([=] {
+            return web::json::value::parse("{}");
         });
     }
 
     pplx::task<web::json::value> findAll(std::string collection, web::json::value filter, web::json::value optionsParams) {
         return pplx::task<web::json::value>([=] {
-            return web::json::value::parse("[]");;
+            return web::json::value::parse("[]");
+        });
+    }
+
+    pplx::task<bool> deleteOne(std::string collection, web::json::value filter) {
+        return pplx::task<bool>([=] {
+            return false;
+        });
+    }
+
+    pplx::task<bool> deleteMany(std::string collection, web::json::value filter) {
+        return pplx::task<bool>([=] {
+            return false;
         });
     }
 }

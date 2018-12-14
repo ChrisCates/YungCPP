@@ -35,6 +35,8 @@ namespace yungrouter {
             if (path == "/mongo/update/many") { response = yungroute::mongoUpdateMany(); }
             if (path == "/mongo/find/one") { response = yungroute::mongoFindOne(); }
             if (path == "/mongo/find/all") { response = yungroute::mongoFindAll(); }
+            if (path == "/mongo/delete/one") { response = yungroute::mongoDeleteOne(); }
+            if (path == "/mongo/delete/many") { response = yungroute::mongoDeleteMany(); }
         }
 
         request.reply(generateResponse(response.first, response.second));

@@ -12,6 +12,17 @@ endif (UNIX)
 
 PROJECT(TestsForYungCPP)
 
+# Preset OpenSSL directories
+IF (NOT OPENSSL_ROOT_DIR)
+  MESSAGE("-- Setting default OpenSSL Root Directory")
+  SET(OPENSSL_ROOT_DIR "/usr/local/opt/openssl")
+ENDIF (NOT OPENSSL_ROOT_DIR)
+
+IF (NOT OPENSSL_LIBRARIES)
+  MESSAGE("-- Setting default OpenSSL Library Directory")
+  SET(OPENSSL_LIBRARIES "/usr/local/opt/openssl/lib")
+ENDIF (NOT OPENSSL_LIBRARIES)
+
 # Required for tests
 FIND_PACKAGE(Boost COMPONENTS unit_test_framework)
 

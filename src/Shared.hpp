@@ -20,6 +20,10 @@
     #include <bsoncxx/builder/basic/document.hpp>
     #include <bsoncxx/builder/basic/kvp.hpp>
     #include <bsoncxx/json.hpp>
+    #include <bsoncxx/types.hpp>
+    #include <bsoncxx/stdx/make_unique.hpp>
+    #include <bsoncxx/stdx/optional.hpp>
+    #include <bsoncxx/stdx/string_view.hpp>
 
     #include <mongocxx/client.hpp>
     #include <mongocxx/pool.hpp>

@@ -71,6 +71,28 @@ namespace yungroute {
         std::string payload = info.serialize().c_str();
         return make_pair(status, payload);
     }
+
+    std::pair<web::http::status_code, std::string> mongoDeleteOne() {
+        web::json::value info;
+        unsigned short status = 200;
+
+        info = yungservice::metadata(info);
+        info = yungservice::mongoDeleteOne(info);
+
+        std::string payload = info.serialize().c_str();
+        return make_pair(status, payload);
+    }
+
+    std::pair<web::http::status_code, std::string> mongoDeleteMany() {
+        web::json::value info;
+        unsigned short status = 200;
+
+        info = yungservice::metadata(info);
+        info = yungservice::mongoDeleteMany(info);
+
+        std::string payload = info.serialize().c_str();
+        return make_pair(status, payload);
+    }
 }
 
 #endif

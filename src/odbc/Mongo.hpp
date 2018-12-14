@@ -20,9 +20,9 @@ namespace yungmongo {
                 auto dataString = data.serialize().c_str();
                 auto document = bsoncxx::from_json(dataString);
 
-                client.insert_one(document.view());
+                auto done = client.insert_one(document.view());
 
-                return true;
+                return done ? true : false;
             } catch (std::exception &e) {
                 std::cout << e.what() << std::endl;
                 return false;
@@ -48,9 +48,9 @@ namespace yungmongo {
                     documents.push_back(bsoncxx::document::value(document.view()));
                 }
 
-                client.insert_many(documents);
+                auto done = client.insert_many(documents);
 
-                return true;
+                return done ? true : false;
             } catch (std::exception &e) {
                 std::cout << e.what() << std::endl;
                 return false;
@@ -82,9 +82,9 @@ namespace yungmongo {
                 auto dataDocument = bsoncxx::from_json(newData.serialize().c_str());
                 auto filterDocument = bsoncxx::from_json(filter.serialize().c_str());
 
-                client.update_one(filterDocument.view(), dataDocument.view(), options);
+                auto done = client.update_one(filterDocument.view(), dataDocument.view(), options);
 
-                return true;
+                return done ? true : false;
             } catch (std::exception &e) {
                 std::cout << e.what() << std::endl;
                 return false;
@@ -106,9 +106,9 @@ namespace yungmongo {
                 auto dataDocument = bsoncxx::from_json(newData.serialize().c_str());
                 auto filterDocument = bsoncxx::from_json(filter.serialize().c_str());
 
-                client.update_many(filterDocument.view(), dataDocument.view(), options);
+                auto done = client.update_many(filterDocument.view(), dataDocument.view(), options);
 
-                return true;
+                return done ? true : false;
             } catch (std::exception &e) {
                 std::cout << e.what() << std::endl;
                 return false;
@@ -135,8 +135,10 @@ namespace yungmongo {
         return options;
     }
 
-    pplx::task<std::string> findOne(std::string collection, web::json::value filter, web::json::value optionsParams) {
-        return pplx::task<std::string>([=] {
+    pplx::task<web::json::value> findOne(std::string collection, web::json::value filter, web::json::value optionsParams = web::json::value::parse("{}")) {
+        return pplx::task<web::json::value>([=] {
+            web::json::value result;
+
             try {
                 auto options = findOptions(optionsParams);
 
@@ -144,20 +146,31 @@ namespace yungmongo {
                 auto client = (*poolInstance)[db][collection];
 
                 auto filterString = filter.serialize().c_str();
-                auto document = bsoncxx::from_json(filterString);
+                auto filterDocument = bsoncxx::from_json(filterString);
 
-                auto resultDocument = client.find_one(document.view(), options);
-                auto resultView = resultDocument->view();
+                auto resultDocument = client.find_one(filterDocument.view(), options);
 
-                return bsoncxx::to_json(resultView);
+                if (resultDocument) {
+                    auto resultView = resultDocument->view();
+
+                    auto resultString = bsoncxx::to_json(resultView);
+                    auto result = web::json::value::parse(resultString);
+
+                    return result;
+                } else {
+                    result = web::json::value::parse("{}");
+                    return result;
+                }
             } catch (std::exception &e) {
                 std::cout << e.what() << std::endl;
-                return std::string("");
+                result["e"] = web::json::value(e.what());
+
+                return result;
             }
         });
     }
 
-    pplx::task<web::json::value> findAll(std::string collection, web::json::value filter, web::json::value optionsParams) {
+    pplx::task<web::json::value> findAll(std::string collection, web::json::value filter, web::json::value optionsParams = web::json::value::parse("{}")) {
         return pplx::task<web::json::value>([=] {
             web::json::value documents;
             try {
@@ -167,9 +180,9 @@ namespace yungmongo {
                 auto client = (*poolInstance)[db][collection];
 
                 auto filterString = filter.serialize().c_str();
-                auto document = bsoncxx::from_json(filterString);
+                auto filterDocument = bsoncxx::from_json(filterString);
 
-                auto resultCursor = client.find(document.view(), options);
+                auto resultCursor = client.find(filterDocument.view(), options);
 
                 int i = 0;
                 for (auto&& document : resultCursor) {
@@ -178,11 +191,52 @@ namespace yungmongo {
                     i++;
                 }
 
+                if (i == 0) documents = web::json::value::parse("[]");
+
                 return documents;
             } catch (std::exception &e) {
                 std::cout << e.what() << std::endl;
                 documents = web::json::value::parse("[]");
                 return documents;
+            }
+        });
+    }
+
+    pplx::task<bool> deleteOne(std::string collection, web::json::value filter) {
+        return pplx::task<bool>([=] {
+            try {
+                auto poolInstance = pool.acquire();
+                auto client = (*poolInstance)[db][collection];
+
+                auto filterString = filter.serialize().c_str();
+                auto filterDocument = bsoncxx::from_json(filterString);
+
+                auto done = client.delete_one(filterDocument.view());
+
+                return done ? true : false;
+            } catch (std::exception &e) {
+                std::cout << e.what() << std::endl;
+                return false;
+            }
+        });
+    }
+
+    pplx::task<bool> deleteMany(std::string collection, web::json::value filter) {
+        return pplx::task<bool>([=] {
+            web::json::value documents;
+            try {
+                auto poolInstance = pool.acquire();
+                auto client = (*poolInstance)[db][collection];
+
+                auto filterString = filter.serialize().c_str();
+                auto filterDocument = bsoncxx::from_json(filterString);
+
+                auto done = client.delete_many(filterDocument.view());
+
+                return done ? true : false;
+            } catch (std::exception &e) {
+                std::cout << e.what() << std::endl;
+                return false;
             }
         });
     }

@@ -4,7 +4,7 @@
 #include <string>
 
 #include "Shared.hpp"
-#include "services/ServerData.hpp"
+#include "services/Server.service.hpp"
 
 BOOST_AUTO_TEST_SUITE(ServerData)
 
