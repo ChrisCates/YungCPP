@@ -16,7 +16,9 @@ int main(int argc, char** argv) {
     ("mongodb", yungopt::value<std::string>(&yungconfig::mongodb), "MongoDB DB name (default is yungcpp)")
     ("mysql", yungopt::value<std::string>(&yungconfig::mysql), "MySQL url (default is mysql://root@127.0.0.1:3306)")
     ("mysqldb", yungopt::value<std::string>(&yungconfig::mysqldb), "MySQL DB name (default is yungcpp)")
-    ("redis", yungopt::value<std::string>(&yungconfig::redis), "Redis url (default is redis://localhost:6379)");
+    ("redis", yungopt::value<std::string>(&yungconfig::redis), "Redis url (default is localhost)")
+    ("redisPort", yungopt::value<int>(&yungconfig::redisPort), "Redis port (default is 6379)")
+    ("redisTimeout", yungopt::value<int>(&yungconfig::redisTimeout), "Redis timeout (default is 3 in s)");
 
     yungopt::variables_map vm;
 
@@ -36,6 +38,8 @@ int main(int argc, char** argv) {
         if (vm.count("mysql")) yungconfig::mysql = vm["mysql"].as<std::string>();
         if (vm.count("mysqldb")) yungconfig::mysqldb = vm["mysqldb"].as<std::string>();
         if (vm.count("redis")) yungconfig::redis = vm["redis"].as<std::string>();
+        if (vm.count("redisPort")) yungconfig::redisPort = vm["redisPort"].as<int>();
+        if (vm.count("redisTimeout")) yungconfig::redisTimeout = vm["redisTimeout"].as<int>();
 
         std::string host = yungconfig::host + ":" + yungconfig::port;
         web::http::experimental::listener::http_listener listener(host);
@@ -60,15 +64,19 @@ int main(int argc, char** argv) {
             }
 
             if (REDISCXX) {
-                std::cout << "Redis Enabled on URI " << yungconfig::redis << std::endl;
+                if (yungredis::init().get()) {
+                    std::cout << "Redis Enabled on URI " << yungconfig::redis << " and port " << yungconfig::redisPort << std::endl;
+                } else {
+                    std::cout << "Redis Failed to initialize on URI " << yungconfig::redis << " and port " << yungconfig::redisPort << std::endl;
+                }
             }
 
             listener.open().wait();
             while (true);
         } catch (std::exception& e) {
             std::cout << e.what() << std::endl;
+            return 2;
         }
-
     } catch (yungopt::error& e) {
         std::cerr << e.what() << std::endl;
         return 2;

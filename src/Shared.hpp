@@ -66,9 +66,9 @@
 
 // Redis Drivers
 #ifdef REDISCXX
-    #include <hiredis.h>
-    #include <async.h>
-    #include <adapters/macosx.h>
+    #include "hiredis.h"
+    #include "async.h"
+    #include "adapters/macosx.h"
     #include "odbc/Redis.hpp"
 #else
     #define REDISCXX 0

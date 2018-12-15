@@ -15,7 +15,9 @@ namespace yungconfig {
     std::string mysql = "mysql://root@127.0.0.1:3306";
     std::string mysqldb = "yungcpp";
 
-    std::string redis = "redis://localhost:6379";
+    std::string redis = "localhost";
+    int redisPort = 6379;
+    int redisTimeout = 3;
 }
 
 #endif

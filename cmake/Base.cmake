@@ -65,5 +65,3 @@ IF (WSSCXX)
   MESSAGE("-- Websocket++ now enabled, WSSCXX definition added")
   ADD_DEFINITIONS("-DWSSCXX")
 ENDIF (WSSCXX)
-
-MESSAGE("-- Definitions: " ${REQUIRED_DEFINITONS})
