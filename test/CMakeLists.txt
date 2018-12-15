@@ -12,39 +12,18 @@ endif (UNIX)
 
 PROJECT(TestsForYungCPP)
 
-# Preset OpenSSL directories
-IF (NOT OPENSSL_ROOT_DIR)
-  MESSAGE("-- Setting default OpenSSL Root Directory")
-  SET(OPENSSL_ROOT_DIR "/usr/local/opt/openssl")
-ENDIF (NOT OPENSSL_ROOT_DIR)
-
-IF (NOT OPENSSL_LIBRARIES)
-  MESSAGE("-- Setting default OpenSSL Library Directory")
-  SET(OPENSSL_LIBRARIES "/usr/local/opt/openssl/lib")
-ENDIF (NOT OPENSSL_LIBRARIES)
+INCLUDE("${CMAKE_CURRENT_LIST_DIR}/../cmake/Base.cmake")
 
 # Required for tests
 FIND_PACKAGE(Boost COMPONENTS unit_test_framework)
 
-# Required for YungC++ to compile
-FIND_PACKAGE(Boost COMPONENTS program_options thread chrono system REQUIRED)
-FIND_PACKAGE(cpprestsdk REQUIRED)
-
-INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
-
-MESSAGE("-- BOOST PATH \t\t" ${Boost_INCLUDE_DIR})
-
 SET(
   REQUIRED_LIBRARIES
-  cpprestsdk::cpprest
+  ${REQUIRED_LIBRARIES}
   Boost::unit_test_framework
-  ${Boost_SYSTEM_LIBRARY}
-  ${Boost_PROGRAM_OPTIONS_LIBRARY}
-  ${Boost_THREAD_LIBRARY}
-  ${Boost_CHRONO_LIBRARY}
 )
 
-ENABLE_TESTING() # Enable CTest
+ENABLE_TESTING()
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../src)
 LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../src)

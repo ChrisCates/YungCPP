@@ -29,14 +29,14 @@ namespace yungrouter {
 
         if (method == "GET") {
             if (path == "/") { response = yungroute::info(); }
-            if (path == "/mongo/insert/one") { response = yungroute::mongoInsert(); }
-            if (path == "/mongo/insert/many") { response = yungroute::mongoInsertMany(); }
-            if (path == "/mongo/update/one") { response = yungroute::mongoUpdate(); }
-            if (path == "/mongo/update/many") { response = yungroute::mongoUpdateMany(); }
-            if (path == "/mongo/find/one") { response = yungroute::mongoFindOne(); }
-            if (path == "/mongo/find/all") { response = yungroute::mongoFindAll(); }
-            if (path == "/mongo/delete/one") { response = yungroute::mongoDeleteOne(); }
-            if (path == "/mongo/delete/many") { response = yungroute::mongoDeleteMany(); }
+            if (path == "/mongo/insert/one") { response = yungroute::mongo::insertOne(); }
+            if (path == "/mongo/insert/many") { response = yungroute::mongo::insertMany(); }
+            if (path == "/mongo/update/one") { response = yungroute::mongo::updateOne(); }
+            if (path == "/mongo/update/many") { response = yungroute::mongo::updateMany(); }
+            if (path == "/mongo/find/one") { response = yungroute::mongo::findOne(); }
+            if (path == "/mongo/find/many") { response = yungroute::mongo::findMany(); }
+            if (path == "/mongo/delete/one") { response = yungroute::mongo::deleteOne(); }
+            if (path == "/mongo/delete/many") { response = yungroute::mongo::deleteMany(); }
         }
 
         request.reply(generateResponse(response.first, response.second));

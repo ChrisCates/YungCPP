@@ -74,12 +74,12 @@ BOOST_AUTO_TEST_CASE(MongoShellFindOne) {
     BOOST_CHECK_EQUAL(data.is_object(), compare.is_object());
 }
 
-BOOST_AUTO_TEST_CASE(MongoShellFindAll) {
+BOOST_AUTO_TEST_CASE(MongoShellFindMany) {
 
     web::json::value filter = web::json::value::parse("{}");
     web::json::value options = web::json::value::parse("{}");
 
-    auto task = yungmongo::findAll("test", filter, options);
+    auto task = yungmongo::findMany("test", filter, options);
     web::json::value data = task.get();
 
     BOOST_CHECK_EQUAL(data.is_array(), true);

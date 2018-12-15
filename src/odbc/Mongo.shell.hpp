@@ -17,27 +17,31 @@ namespace yungmongo {
         });
     }
 
-    pplx::task<bool> updateOne(std::string collection, web::json::value filter, web::json::value data, web::json::value optionsParams) {
+    pplx::task<bool> updateOne(std::string collection, web::json::value filter, web::json::value data, web::json::value optionsParams = web::json::value::parse("{}")) {
         return pplx::task<bool>([=] {
             return false;
         });
     }
 
-    pplx::task<bool> updateMany(std::string collection, web::json::value filter, web::json::value data, web::json::value optionsParams) {
+    pplx::task<bool> updateMany(std::string collection, web::json::value filter, web::json::value data, web::json::value optionsParams = web::json::value::parse("{}")) {
         return pplx::task<bool>([=] {
             return false;
         });
     }
 
-    pplx::task<web::json::value> findOne(std::string collection, web::json::value filter, web::json::value optionsParams) {
+    pplx::task<web::json::value> findOne(std::string collection, web::json::value filter, web::json::value optionsParams = web::json::value::parse("{}")) {
         return pplx::task<web::json::value>([=] {
-            return web::json::value::parse("{}");
+            web::json::value placeholder;
+            placeholder = web::json::value::parse("{}");
+            return placeholder;
         });
     }
 
-    pplx::task<web::json::value> findAll(std::string collection, web::json::value filter, web::json::value optionsParams) {
+    pplx::task<web::json::value> findMany(std::string collection, web::json::value filter, web::json::value optionsParams = web::json::value::parse("{}")) {
         return pplx::task<web::json::value>([=] {
-            return web::json::value::parse("[]");
+            web::json::value placeholder;
+            placeholder = web::json::value::parse("[]");
+            return placeholder;
         });
     }
 

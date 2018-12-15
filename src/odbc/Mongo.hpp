@@ -68,7 +68,7 @@ namespace yungmongo {
         return options;
     }
 
-    pplx::task<bool> updateOne(std::string collection, web::json::value filter, web::json::value data, web::json::value optionsParams) {
+    pplx::task<bool> updateOne(std::string collection, web::json::value filter, web::json::value data, web::json::value optionsParams = web::json::value::parse("{}")) {
         return pplx::task<bool>([=] {
             try {
                 auto options = updateOptions(optionsParams);
@@ -92,7 +92,7 @@ namespace yungmongo {
         });
     }
 
-    pplx::task<bool> updateMany(std::string collection, web::json::value filter, web::json::value data, web::json::value optionsParams) {
+    pplx::task<bool> updateMany(std::string collection, web::json::value filter, web::json::value data, web::json::value optionsParams = web::json::value::parse("{}")) {
         return pplx::task<bool>([=] {
             try {
                 auto options = updateOptions(optionsParams);
@@ -170,7 +170,7 @@ namespace yungmongo {
         });
     }
 
-    pplx::task<web::json::value> findAll(std::string collection, web::json::value filter, web::json::value optionsParams = web::json::value::parse("{}")) {
+    pplx::task<web::json::value> findMany(std::string collection, web::json::value filter, web::json::value optionsParams = web::json::value::parse("{}")) {
         return pplx::task<web::json::value>([=] {
             web::json::value documents;
             try {

@@ -6,92 +6,94 @@
 #define _EXAMPLES_H 1
 
 namespace yungroute {
-    std::pair<web::http::status_code, std::string> mongoInsert() {
-        web::json::value info;
-        unsigned short status = 200;
+    namespace mongo {
+        std::pair<web::http::status_code, std::string> insertOne() {
+            web::json::value info;
+            unsigned short status = 200;
 
-        info = yungservice::metadata(info);
-        info = yungservice::mongoInsert(info);
+            info = yungservice::metadata(info);
+            info = yungservice::mongo::insertOne(info);
 
-        std::string payload = info.serialize().c_str();
-        return make_pair(status, payload);
-    }
+            std::string payload = info.serialize().c_str();
+            return make_pair(status, payload);
+        }
 
-    std::pair<web::http::status_code, std::string> mongoInsertMany() {
-        web::json::value info;
-        unsigned short status = 200;
+        std::pair<web::http::status_code, std::string> insertMany() {
+            web::json::value info;
+            unsigned short status = 200;
 
-        info = yungservice::metadata(info);
-        info = yungservice::mongoInsertMany(info);
+            info = yungservice::metadata(info);
+            info = yungservice::mongo::insertMany(info);
 
-        std::string payload = info.serialize().c_str();
-        return make_pair(status, payload);
-    }
+            std::string payload = info.serialize().c_str();
+            return make_pair(status, payload);
+        }
 
-    std::pair<web::http::status_code, std::string> mongoUpdate() {
-        web::json::value info;
-        unsigned short status = 200;
+        std::pair<web::http::status_code, std::string> updateOne() {
+            web::json::value info;
+            unsigned short status = 200;
 
-        info = yungservice::metadata(info);
-        info = yungservice::mongoUpdate(info);
+            info = yungservice::metadata(info);
+            info = yungservice::mongo::updateOne(info);
 
-        std::string payload = info.serialize().c_str();
-        return make_pair(status, payload);
-    }
+            std::string payload = info.serialize().c_str();
+            return make_pair(status, payload);
+        }
 
-    std::pair<web::http::status_code, std::string> mongoUpdateMany() {
-        web::json::value info;
-        unsigned short status = 200;
+        std::pair<web::http::status_code, std::string> updateMany() {
+            web::json::value info;
+            unsigned short status = 200;
 
-        info = yungservice::metadata(info);
-        info = yungservice::mongoUpdateMany(info);
+            info = yungservice::metadata(info);
+            info = yungservice::mongo::updateMany(info);
 
-        std::string payload = info.serialize().c_str();
-        return make_pair(status, payload);
-    }
+            std::string payload = info.serialize().c_str();
+            return make_pair(status, payload);
+        }
 
-    std::pair<web::http::status_code, std::string> mongoFindOne() {
-        web::json::value info;
-        unsigned short status = 200;
+        std::pair<web::http::status_code, std::string> findOne() {
+            web::json::value info;
+            unsigned short status = 200;
 
-        info = yungservice::metadata(info);
-        info = yungservice::mongoFindOne(info);
+            info = yungservice::metadata(info);
+            info = yungservice::mongo::findOne(info);
 
-        std::string payload = info.serialize().c_str();
-        return make_pair(status, payload);
-    }
+            std::string payload = info.serialize().c_str();
+            return make_pair(status, payload);
+        }
 
-    std::pair<web::http::status_code, std::string> mongoFindAll() {
-        web::json::value info;
-        unsigned short status = 200;
+        std::pair<web::http::status_code, std::string> findMany() {
+            web::json::value info;
+            unsigned short status = 200;
 
-        info = yungservice::metadata(info);
-        info = yungservice::mongoFindAll(info);
+            info = yungservice::metadata(info);
+            info = yungservice::mongo::findMany(info);
 
-        std::string payload = info.serialize().c_str();
-        return make_pair(status, payload);
-    }
+            std::string payload = info.serialize().c_str();
+            return make_pair(status, payload);
+        }
 
-    std::pair<web::http::status_code, std::string> mongoDeleteOne() {
-        web::json::value info;
-        unsigned short status = 200;
+        std::pair<web::http::status_code, std::string> deleteOne() {
+            web::json::value info;
+            unsigned short status = 200;
 
-        info = yungservice::metadata(info);
-        info = yungservice::mongoDeleteOne(info);
+            info = yungservice::metadata(info);
+            info = yungservice::mongo::deleteOne(info);
 
-        std::string payload = info.serialize().c_str();
-        return make_pair(status, payload);
-    }
+            std::string payload = info.serialize().c_str();
+            return make_pair(status, payload);
+        }
 
-    std::pair<web::http::status_code, std::string> mongoDeleteMany() {
-        web::json::value info;
-        unsigned short status = 200;
+        std::pair<web::http::status_code, std::string> deleteMany() {
+            web::json::value info;
+            unsigned short status = 200;
 
-        info = yungservice::metadata(info);
-        info = yungservice::mongoDeleteMany(info);
+            info = yungservice::metadata(info);
+            info = yungservice::mongo::deleteMany(info);
 
-        std::string payload = info.serialize().c_str();
-        return make_pair(status, payload);
+            std::string payload = info.serialize().c_str();
+            return make_pair(status, payload);
+        }
     }
 }
 
