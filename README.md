@@ -6,6 +6,9 @@
 ![C++ Standard](https://img.shields.io/badge/cmake%20standard-C++%2011-blue.svg)
 ![CMake](https://img.shields.io/badge/cmake%20version-3.7-blue.svg)
 
+## This repository has been archived
+
+### All future development continues at the [CXX-WSF](https://github.com/YungSociety/CXX-WSF) repository.
 
 A framework for structuring Web Services in C++. Designed to work with the MySQL, Mongo and Redis C++ drivers. The intention is to build a scalable, easy to use HTTP(S) Web Server and Client for REST APIs and Websockets. The focus will be primarily to support UNIX OSes.
 
